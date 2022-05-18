@@ -1,12 +1,9 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.metrics import mean_squared_error
 import warnings
 from datetime import date
 warnings.filterwarnings('ignore')
 import statsmodels.api as sm
-
+import pickle
 #pulling in missing dates
 dates = pd.read_csv("Calendar.csv", sep=",")
 dates = dates[["dt"]]
@@ -60,38 +57,39 @@ x_test.set_index("Date", inplace=True)
 #print(stepwise_fit.summary())
 
 #setting index
-index_days = pd.date_range(x_train.index[-1], freq='D',periods=48)
+"""index_days = pd.date_range(x_train.index[-1], freq='D',periods=48)
 model_arima = sm.tsa.arima.ARIMA(x_train, order=(4,2,5))
 model = model_arima.fit()
 fcast1 = model.forecast(48)
 fcast1 = pd.Series(fcast1, index=index_days).dropna()
-fcast1 = fcast1.rename("Arima")
+fcast1 = fcast1.rename("Arima")"""
 
 #making preictions
-start=len(x_train)
+"""start=len(x_train)
 end=len(x_train)+len(x_test)-1
 pred=model.predict(start=start,end=end,type='levels')
 
-#plotting preictions
-fig, ax = plt.subplots(figsize=(15,5))
-chart = sns.lineplot(x="Date",y="Power", data = x_train)
-chart.set_title('Training')
-fcast1.plot(ax=ax, color ='red',marker='o',legend=True)
-x_test.plot(ax=ax, color ='blue',marker='o',legend=True)
-plt.show()
-
 #How much is the model off by power on average
-print("The MSE of ARIMA is: ", mean_squared_error(x_test["Power"].values,fcast1.values, squared=False))
+print("The MSE of ARIMA is: ", mean_squared_error(x_test["Power"].values,fcast1.values, squared=False))"""
 
 #train model on entire dataset
 model2 = sm.tsa.arima.ARIMA(data["Power"],order=(4,2,5))
 model2=model2.fit()
+pickle.dump(model2, open("run_model.pickle", "wb"))
+pickle_in = open("run_model.pickle", "rb")
+model2 = pickle.load(pickle_in)
 t_date = date.today()
 l_date = date(2022, 9, 25)
 delta = l_date - t_date
 index_future_dates = pd.date_range(start=date.today(),end='2022-09-25')
 pred2=model2.predict(start=len(data),end=len(data)+delta.days,typ='levels').rename('ARIMA Predictions')
 pred2.index=index_future_dates
-mph = (pred2[-1]/1000)*170
-print(mph)
-print(round(mph,2), "MPH or",str((60/mph).astype(int))+":"+str((((60/mph)-10)*60).astype(int))+"/Mile")
+AVGHR = float(input("What is your expected average heart rate? "))
+mph = (pred2[-1]/1000)*AVGHR
+print(60/mph)
+if (((60/mph)-10)*60).astype(int) >= 120:
+    print(round(mph,2), "MPH or",str((60/mph).astype(int))+":"+str(f"{((((60/mph)-10)*60).astype(int)-120):02d}")+"/Mile")
+elif (((60/mph)-10)*60).astype(int) > 60:
+    print(round(mph,2), "MPH or",str((60/mph).astype(int))+":"+str(f"{((((60/mph)-10)*60).astype(int)-60):02d}")+"/Mile")
+else:
+    print(round(mph,2), "MPH or",str((60/mph).astype(int))+":"+str(f"{abs(((((60/mph)-10)*60).astype(int))):02d}")+"/Mile")
