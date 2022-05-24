@@ -1,4 +1,8 @@
 Activity Type,Date,Favorite,Title,Distance,Calories,Time,Avg HR,Max HR,Avg Run Cadence,Max Run Cadence,Avg Pace,Best Pace,Total Ascent,Total Descent,Avg Stride Length,Avg Vertical Ratio,Avg Vertical Oscillation,Training Stress Score®,Grit,Flow,Dive Time,Min Temp,Surface Interval,Decompression,Best Lap Time,Number of Laps,Max Temp,Moving Time,Elapsed Time,Min Elevation,Max Elevation
+Running,5/20/2022 18:00,FALSE,Austin Running,3.22,388,0:41:05,153,172,154,163,12:46,11:33,11,33,0.82,0,0,0,0,0,0:00,0,0:00,No,02:38.9,4,0,0:40:59,0:41:08,427,452
+Running,5/18/2022 19:24,FALSE,Austin Running,3.22,378,0:39:50,153,170,156,167,12:22,11:27,--,21,0.84,0,0,0,0,0,0:00,0,0:00,No,02:35.4,4,0,0:39:46,0:39:50,427,452
+Running,5/17/2022 19:21,FALSE,Austin Running,2.04,238,0:25:15,152,169,156,167,12:24,11:30,14,21,0.83,0,0,0,0,0,0:00,0,0:00,No,00:22.3,3,0,0:25:14,0:25:15,430,452
+Running,5/16/2022 19:21,FALSE,Austin Running,4.06,475,0:51:00,151,167,156,169,12:34,10:53,18,22,0.82,0,0,0,0,0,0:00,0,0:00,No,00:39.9,5,0,0:50:59,0:51:00,427,452
 Running,5/13/2022 7:58,FALSE,Austin Running,3.21,393,0:38:06,158,175,158,169,11:52,10:36,--,20,0.86,0,0,0,0,0,0:00,0,0:00,No,02:18.0,4,0,0:37:59,0:38:33,427,453
 Running,5/12/2022 19:21,FALSE,Austin Running,3.21,387,0:38:42,152,169,157,172,12:04,10:16,19,22,0.85,0,0,0,0,0,0:00,0,0:00,No,02:20.9,4,0,0:38:42,0:38:42,427,452
 Running,5/11/2022 19:18,FALSE,Austin Running,3.21,388,0:39:07,159,181,156,167,12:12,10:12,--,21,0.85,0,0,0,0,0,0:00,0,0:00,No,02:19.7,4,0,0:39:05,0:40:16,427,452
